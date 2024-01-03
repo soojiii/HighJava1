@@ -38,8 +38,8 @@ public class FileTest03 {
 			}else {
 				size = String.valueOf(f.length());
 				attr = f.canRead() ? "R" : "";
-				attr = f.canWrite() ? "W" : "";
-				attr = f.isHidden() ? "H" : "";
+				attr += f.canWrite() ? "W" : "";
+				attr += f.isHidden() ? "H" : "";
 			}
 			String strDate = df.format(new Date(f.lastModified()));
 			
