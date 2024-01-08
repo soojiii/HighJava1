@@ -25,7 +25,7 @@ public class TcpServer02 {
 		receiver.start();
 		
 		
-		} catch (IOException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		
