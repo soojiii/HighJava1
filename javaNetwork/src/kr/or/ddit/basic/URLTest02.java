@@ -33,6 +33,8 @@ public class URLTest02 {
 		System.out.println("---------------------------------");
 		
 		
+		
+		
 		// URL에 지정한 문서(파일)의 내용 가져오기 ==> index.html 문서의 내용 가져오기
 		
 		// 방법1) ==> URLConnection 객체를 이용하는 방법
