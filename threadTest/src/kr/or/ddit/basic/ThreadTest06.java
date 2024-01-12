@@ -49,7 +49,7 @@ class DataCountDown extends Thread{
 			}
 		}
 		System.out.println("시간이 초과 되었습니다. 프로그램을 종료합니다.");
-		System.exit(0);
+		System.exit(20);
 	}
 }
 

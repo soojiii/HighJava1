@@ -13,7 +13,7 @@ public class ThreadTest08 {
 		autoSave.start();  
 		
 		try {
-			for(int i=1; i<=20; i++) {
+			for(int i=1; i<=5; i++) {
 				System.out.println(i);
 				Thread.sleep(1000);
 			}

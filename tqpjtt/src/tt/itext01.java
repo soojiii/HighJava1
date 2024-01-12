@@ -37,8 +37,8 @@ public class itext01 {
             // 한글을 사용하기 위해 폰트를 설정해줍니다.
             // 글자 방향을 결정하는 CMap은 두가지가 있습니다. 
             // UniKS-UCS2-H : 가로, UniKS-UCS2-V : 세로
-            Font font = new Font(BaseFont.createFont("HYGoThic-Medium", "UniKS-UCS2-H", BaseFont.NOT_EMBEDDED), 20);
-            Font font2 = new Font(BaseFont.createFont("HYSMyeongJo-Medium", "UniKS-UCS2-V", BaseFont.NOT_EMBEDDED), 20);
+            Font font = new Font(BaseFont.createFont("HYGoThic-Medium", "UniKS-UCS2-H", BaseFont.EMBEDDED), 20);
+            Font font2 = new Font(BaseFont.createFont("HYSMyeongJo-Medium", "UniKS-UCS2-V", BaseFont.EMBEDDED), 20);
             
 
             // 문서에 2개의 paragraph를 각기 다른 본트로 첨부해 보겠습니다.
