@@ -1,6 +1,8 @@
 package kr.or.ddit.mvc.controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Scanner;
 
 import kr.or.ddit.mvc.service.IMemberService;
@@ -17,7 +19,8 @@ public class MemberController {
 	public MemberController() {
 		scan = new Scanner(System.in);
 		//Service객체 생성
-		service = new MemberServiceImpl();
+//		service = new MemberServiceImpl();
+		service = MemberServiceImpl.getInstance();
 	}
 	
 	public static void main(String[] args) {
@@ -43,7 +46,7 @@ public class MemberController {
 					displayAllMember(); 
 					break;
 				case 5 : 	// 수정2
-					//updateMember2(); 
+					updateMember2(); 
 					break;
 				case 0 :
 					System.out.println("작업을 마칩니다...");
@@ -54,6 +57,66 @@ public class MemberController {
 			}
 		}
 	}
+	
+	//회원정보 수정 원하는 정보만 수정
+	private void updateMember2() {
+		System.out.println();
+		System.out.println("수정할 회원 정보를 입력하세요...");
+		System.out.print("회원ID >> ");
+		String memId = scan.next();
+		
+		int count = service.getMemberCount(memId);
+		if(count==0) {
+			System.out.println(memId + "는(은) 없는 회원입니다.");
+			System.out.println("수정 작업을 종료합니다...");
+			return;
+		}
+		
+		int fieldNum;
+		String updateField = null;	// 수정할 컬럼명이 저장될 변수
+		String updateTitle = null;  // 수정할 내용의 제목이 저장될 변수
+		do {
+			System.out.println();
+			System.out.println("수정할 항목을 선택하세요...");
+			System.out.println("1.비밀번호   2.회원이름   3.전화번호   4.회원주소");
+			System.out.println("-------------------------------------");
+			System.out.print("수정 항목 선택 >> ");
+			fieldNum = scan.nextInt();
+			
+			switch(fieldNum) {
+				case 1 : updateField = "mem_pass";
+						 updateTitle = "비밀번호"; break;
+				case 2 : updateField = "mem_name";
+				 		 updateTitle = "회원이름"; break;
+				case 3 : updateField = "mem_tel";
+						 updateTitle = "전화번호"; break;
+				case 4 : updateField = "mem_addr";
+				 		 updateTitle = "회원주소"; break;
+				default : 
+					System.out.println("수정 항목을 잘못 선택했습니다. 다시 선택하세요...");
+			}
+		}while(fieldNum < 1 || fieldNum >4);
+		
+		scan.nextLine(); // 입력 버퍼 비우기
+		System.out.println();
+		System.out.print("새로운 " + updateTitle + " >> ");
+		String updateData = scan.nextLine();
+		
+		//수정 작업에 사용할 데이터를 Map에 추가한다.
+		Map<String, String> pMap = new HashMap<String, String>();
+		pMap.put("memberID", memId);
+		pMap.put("fieldName", updateField);
+		pMap.put("data", updateData);
+		
+		int cnt = service.updateMember2(pMap);
+		
+		if(cnt>0) {
+			System.out.println(memId + "회원 정보 수정 완료!!!");
+		}else {
+			System.out.println(memId + "회원 정보 수정 실패~~~");
+		}
+		
+	}
 
 	private void displayAllMember() {
 		System.out.println();
@@ -63,31 +126,45 @@ public class MemberController {
 		
 		List<MemberVO> memList = service.getAllMember();
 		
-		boolean chk = false;
-		
-		int i = 0;
-		
-		while(true) {
-			chk = true;
-			MemberVO memVo = new MemberVO();
-			memVo=memList.get(i);
-			i++;
-			
-			String memId = memVo.getMem_id();
-			String memPass = memVo.getMem_pass();
-			String memName = memVo.getMem_name();
-			String memTel = memVo.getMem_tel();
-			String memAddr = memVo.getMem_addr();
-			System.out.println(memId + "\t" + memPass + "\t" +
-					memName + "\t" + memTel + "\t" + memAddr );
-			
-			if(i== memList.size()) break;
-			
+		if(memList==null || memList.size()==0) {
+			System.out.println("등록된 회원 목록이 하나도 없습니다.");
+		}else {
+			for(MemberVO memVo : memList) {
+				String id = memVo.getMem_id();
+				String pass = memVo.getMem_pass();
+				String name = memVo.getMem_name();
+				String tel = memVo.getMem_tel();
+				String addr = memVo.getMem_addr();
+				System.out.println(id+"\t"+pass+"\t"+name+"\t"+tel+"\t"+addr);
+			}
 		}
-		if(!chk) {
-				System.out.println("회원 정보가 하나도 없습니다...");
-		}
-			System.out.println("---------------------------------------");
+		System.out.println("-------------------------------------");
+		
+//		boolean chk = false;
+//		
+//		int i = 0;
+//		
+//		while(true) {
+//			chk = true;
+//			MemberVO memVo = new MemberVO();
+//			memVo=memList.get(i);
+//			i++;
+//			
+//			String memId = memVo.getMem_id();
+//			String memPass = memVo.getMem_pass();
+//			String memName = memVo.getMem_name();
+//			String memTel = memVo.getMem_tel();
+//			String memAddr = memVo.getMem_addr();
+//			System.out.println(memId + "\t" + memPass + "\t" +
+//					memName + "\t" + memTel + "\t" + memAddr );
+//			
+//			if(i== memList.size()) break;
+//			
+//		}
+//		if(!chk) {
+//				System.out.println("회원 정보가 하나도 없습니다...");
+//		}
+//			System.out.println("---------------------------------------");
 		
 	}
 
@@ -118,14 +195,13 @@ public class MemberController {
 		System.out.print("새로운 회원주소 >> ");
 		String newMemAddr = scan.nextLine();
 		
-		
+		// 입력 받은 수정할 자료를 VO객체에 저장한다.
 		MemberVO memVo = new MemberVO();
 		memVo.setMem_id(memId);
 		memVo.setMem_pass(newMemPass);
 		memVo.setMem_name(newMemName);
 		memVo.setMem_tel(newMemTel);
 		memVo.setMem_addr(newMemAddr);
-		
 		
 		int cnt = service.updateMember(memVo);
 		if(cnt>0) {
@@ -143,7 +219,7 @@ public class MemberController {
 		System.out.print("회원ID >> ");
 		String memId = scan.next();
 		
-		int cnt = service.getMemberCount(memId);
+		int cnt = service.deleteMember(memId);
 		
 		if(cnt>0) {
 			System.out.println("회원ID가 " + memId + "인 회원 정보 삭제 성공!!!");
@@ -151,10 +227,6 @@ public class MemberController {
 			System.out.println(memId + "회원은 없는 회원이거나 삭제에 실패했습니다...");
 		}
 		
-		MemberVO memVo = new MemberVO();
-		memVo.setMem_id(memId);
-		
-		int cnt2 = service.deleteMember(memId);
 	}
 
 	//insert
