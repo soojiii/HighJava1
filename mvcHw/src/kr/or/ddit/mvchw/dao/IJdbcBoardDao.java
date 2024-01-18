@@ -35,7 +35,7 @@ public interface IJdbcBoardDao {
 	 * @param board_title
 	 * @return 작업 성공 : 1, 작업 실패 : 0
 	 */
-	public int searchJdbcBoard(int board_title);
+	public List<JdbcBoardVO> searchJdbcBoard(String board_title);
 	
 	
 }

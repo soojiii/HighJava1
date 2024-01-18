@@ -58,9 +58,9 @@ public class JdbcBoardDaoImpl implements IJdbcBoardDao{
 	}
 
 	@Override
-	public int searchJdbcBoard(int board_title) {
+	public List<JdbcBoardVO> searchJdbcBoard(String board_title);
 		// TODO Auto-generated method stub
-		return 0;
+		return null;
 	}
 
 }
