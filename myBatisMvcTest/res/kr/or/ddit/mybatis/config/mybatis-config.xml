@@ -17,7 +17,7 @@
 			긴 전체 이름 대신 짧은 이름으로 대체해서 사용하고자 할 때 설정한다.
 		형식) <typeAlias type="패키지명까지 포함된 전체 이름" alias="alias명"/>
 		-->
-		<typeAlias type="kr.or.ddit.vo.LprodVO" alias="lprodVO"/>
+		<typeAlias type="kr.or.ddit.mvc.vo.MemberVO" alias="MemberVO"/>
 	</typeAliases>
 	<!-- DB에 연결 설정하기 -->
 	<environments default="oracleDev">
@@ -39,8 +39,7 @@
 		<!-- 
 		형식) <mapper resource="경로명/파일명.xml"/>
 		 -->
-		 <mapper resource="kr/or/ddit/mybatis/mappers/lprod-mapper.xml"/>
-		 <mapper resource="kr/or/ddit/mybatis/mappers/jdbc-mapper.xml"/>
+		 <mapper resource="kr/or/ddit/mybatis/mappers/mvc-mapper.xml"/>
 	</mappers>
 	
 </configuration>
