@@ -56,6 +56,7 @@ public class ServletTest01 extends HttpServlet {
 		//처리한 내용을 응답으로 보내기 위한 스트림 객체 생성 ==> PrintWriter객체 생성
 		PrintWriter out = response.getWriter();
 		
+		
 		//처리한 내용을 출력한다. (HTML형식의 내용을 작성하여 출력한다.)
 		
 		//방법1) append()메서드 이용하기

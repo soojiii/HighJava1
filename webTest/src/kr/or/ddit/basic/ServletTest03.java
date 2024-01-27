@@ -78,7 +78,7 @@ public class ServletTest03 extends HttpServlet {
 		out.println("<html><head><meta charset='utf-8'></head>"
 				+ "<body><h1 style='color:blue'>doPost()메서드의 처리 결과입니다.</h1>"
 				+ "</body></html>");
-	
+		
 	}
 
 	@Override
