@@ -23,20 +23,31 @@ public class CookieCountServlet extends HttpServlet {
 		response.setContentType("text/html; charset=utf-8");
 		PrintWriter out = response.getWriter();
 		
+		//사용할 쿠키이름 : "cnt"
 		
-		int cnt=0;
+		int cnt=0;   //쿠키값이 저장될 변수 선언
+		
 		Cookie[] cookieArr = request.getCookies();
 		
-		for (Cookie cookie : cookieArr) {
-			if(cookie.getName().equals("cnt")) {
-				cnt= Integer.parseInt(cookie.getValue());
+		if(cookieArr!=null) {
+			//배열에 있는 쿠키 중에서 'cnt'라는 이름의 쿠키 찾기
+			for (Cookie cookie : cookieArr) {
+				if(cookie.getName().equals("cnt")) {
+					//"cnt".equals(cookie.getName())
+					
+					//'cnt'쿠키의 쿠키값을 구한다.
+					cnt = Integer.parseInt(cookie.getValue());
+					break;
+				}
 			}
 		}
-		cnt++;
+		cnt++; //cnt 증가
 		
+		//쿠키이름은 'cnt'이고, 증가된 cnt를 쿠키값으로 갖는 Cookie객체 생성
 		Cookie countCookie = new Cookie("cnt", cnt+"");
+										      //String.valueOf(cnt)
 		
-		response.addCookie(countCookie);
+		response.addCookie(countCookie); //쿠키저장
 		
 		out.println("</html>");
 		out.println("<head><meta charset='utf-8'>"

@@ -29,11 +29,7 @@ public class CookieLoginServlret extends HttpServlet {
 		String id = request.getParameter("id");
 		String pass = request.getParameter("pass");
 		String box = request.getParameter("cbox");
-		
-		
-		
-		
-		
+				
 	
 		if("id기억하기".equals(box)) {
 			Cookie cookie = new Cookie("id",id); // 체크박스가 체크되어있으면 쿠키를 만든다
