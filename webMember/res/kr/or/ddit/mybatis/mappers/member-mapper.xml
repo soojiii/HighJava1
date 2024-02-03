@@ -3,17 +3,25 @@
 <!DOCTYPE mapper
 	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<!-- 
-	mapper태그의 namespace속성값은 이 곳에 작성된 SQL문을 호출해서 사용할 때
-	사용되는 이름이다.
- -->
+
 <mapper namespace="mymember">
-	<select id="getLoginMember" parameterType="memVo" resultType="memVo">
+	<select id="getAllMember" resultType="MemberVo">
 		select * from mymember
-		where mem_id=#{mem_id} and mem_pass=#{mem_pass}
+	</select>
+	
+	<select id="getMember" parameterType="String" resultType="MemberVo">
+		select * from mymember where mem_id=#{mem_id}
+	</select>
+	
+	<insert id="insertMember" parameterType="MemberVo">
+		insert into mymember (mem_id, mem_pass, mem_name, mem_tel, mem_addr, mem_photo)
+			values(#{mem_id}, #{mem_pass}, #{mem_name}, #{mem_tel}, #{mem_addr}, #{mem_photo})
+	</insert>
+	
+	<select id="getMemberId" parameterType="String" resultType="String">
+		select mem_id from mymember where mem_id=#{mem_id}
 	</select>
 		
-	 
 </mapper>
 
 
