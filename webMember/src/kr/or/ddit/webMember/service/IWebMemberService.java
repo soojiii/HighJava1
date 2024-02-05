@@ -12,5 +12,10 @@ public interface IWebMemberService {
 	
 	public int insertMember(MemberVO mVo);
 	
-	public String getMemberId(String id);
+	public int deleteMember(String id);
+	
+	public int updateMember(MemberVO mVo);
+	
+	public int getMemberId(String id);
+	
 }

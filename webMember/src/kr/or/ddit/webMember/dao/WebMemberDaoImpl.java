@@ -60,6 +60,29 @@ public class WebMemberDaoImpl implements IWebMemberDao{
 		try {
 			session = MybatisUtil.getSqlSession();
 			cnt = session.insert("mymember.insertMember", mVo);
+			
+			if(cnt>0) session.commit();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			if(session!=null) session.close();
+		}
+		return cnt;
+	}
+
+
+	@Override
+	public int deleteMember(String id) {
+		int cnt = 0;
+		SqlSession session = null;
+		
+		try {
+			session = MybatisUtil.getSqlSession();
+			cnt = session.delete("mymember.deleteMember", id);
+			
+			if(cnt>0) session.commit();
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}finally {
@@ -69,8 +92,27 @@ public class WebMemberDaoImpl implements IWebMemberDao{
 	}
 
 	@Override
-	public String getMemberId(String id) {
-		String mid = null;
+	public int updateMember(MemberVO mVo) {
+		int cnt = 0;
+		SqlSession session = null;
+		
+		try {
+			session = MybatisUtil.getSqlSession();
+			cnt = session.update("mymember.updateMember", mVo);
+			
+			if(cnt>0) session.commit();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			if(session!=null) session.close();
+		}
+		return cnt;
+	}
+	
+	@Override
+	public int getMemberId(String id) {
+		int mid = 0;
 		SqlSession session = null;
 		
 		try {
@@ -83,5 +125,4 @@ public class WebMemberDaoImpl implements IWebMemberDao{
 		}
 		return mid;
 	}
-	
 }

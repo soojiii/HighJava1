@@ -37,8 +37,19 @@ public class WebMemberServiceImpl implements IWebMemberService {
 		return dao.insertMember(mVo);
 	}
 
+
 	@Override
-	public String getMemberId(String id) {
+	public int deleteMember(String id) {
+		return dao.deleteMember(id);
+	}
+
+	@Override
+	public int updateMember(MemberVO mVo) {
+		return dao.updateMember(mVo);
+	}
+
+	@Override
+	public int getMemberId(String id) {
 		return dao.getMemberId(id);
 	}
 

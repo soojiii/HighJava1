@@ -18,8 +18,19 @@
 			values(#{mem_id}, #{mem_pass}, #{mem_name}, #{mem_tel}, #{mem_addr}, #{mem_photo})
 	</insert>
 	
-	<select id="getMemberId" parameterType="String" resultType="String">
-		select mem_id from mymember where mem_id=#{mem_id}
+	<delete id="deleteMember" parameterType="string">
+		delete from mymember where mem_id=#{mem_id}
+	</delete>
+	
+	<update id="updateMember" parameterType="MemberVo">
+		update mymember set
+			mem_pass=#{mem_pass}, mem_name=#{mem_name}, mem_tel=#{mem_tel}, 
+			mem_addr=#{mem_addr}, mem_photo=#{mem_photo}
+		where mem_id=#{mem_id}
+	</update>
+	
+	<select id="getMemberId" parameterType="String" resultType="int">
+		select count(*) cnt from mymember where mem_id=#{mem_id}
 	</select>
 		
 </mapper>
