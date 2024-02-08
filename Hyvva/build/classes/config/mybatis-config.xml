@@ -18,7 +18,10 @@
            긴 전체 이름 대신 짧은 이름으로 대체해서 사용하고자 할 때 설정한다.
            형식) <typeAliases type="패키지명까지 포함된 전체 이름" alias="alias명"/>
            -->
-        
+        <typeAlias type="vo.board.BoardVO" alias="boardVo"/>
+        <typeAlias type="vo.board.Board_ReplyVO" alias="board_ReplyVo"/>
+        <typeAlias type="vo.board.Board_ImgVO" alias="board_ImgVo"/>
+        <typeAlias type="vo.board.Board_ReportVO" alias="board_ReportVo"/>
     </typeAliases>
 <!--    DB에 연결 설정하기-->
     <environments default="oracleDev">
@@ -37,6 +40,7 @@
 <!--
         형식 ) <mapper resource="경로명/파일명.xml"/>
     -->
+    	<mapper resource="mappers/board-mapper.xml"/>
         
     </mappers>
 </configuration>

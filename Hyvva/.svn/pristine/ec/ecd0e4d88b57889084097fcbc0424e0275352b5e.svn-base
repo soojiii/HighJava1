@@ -1,4 +1,4 @@
-package vo;
+package vo.board;
 
 public class Board_ReportVO {
 	private int board_report_id;      //자유게시판 신고ID 

@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+        
+<mapper namespace="board">
+
+<!-- 게시판 리스트  -->
+ <select id="getAllBoard" resultType = "boardVo">
+ 	select * 
+ 	from board
+ 	where board_del ='N'
+ </select>
+ 
+ <!-- 이미지 불러오기 -->
+  <select id="getImageBoard" resultType="board_ImgVo">
+ 	SELECT a.IMAGE_FILE_PATH
+	FROM BOARD_IMG a, BOARD b
+	where a.BOARD_NO = b.#{BOARD_NO};
+ </select>
+ 
+ <!-- 게시판 글쓰기 -->
+ <insert id="insertBoard" parameterType="boardVo">
+ 	insert into board 
+ 	      values(BOARD_NO_SE.NEXTVAL,#{user_id}, #{board_title}, #{board_content}, sysdate, #{board_del})
+ </insert>
+ 
+<!--  게시판 글삭제 -->
+<update id = "deleteBoard" parameterType="int">
+	update board set
+	    board_del = 'Y'
+	where board_no = #{board_no}    
+</update>
+
+<!-- 게시판 글수정 -->
+<update id = "updateBoard" parameterType="boardVo">
+	update board set
+	  board_title =#{board_title},
+	  board_content =#{board_content},
+	  board_date = sysdate,
+	  board_del= #{board_del}
+</update>
+
+<!-- 게시물 조회수 증가 -->
+<update id="updateHit" parameterType="int">
+ 	update board set board_hits=board_hits+1 where board_no=#{board_no}
+</update>
+ 
+<!-- 댓글 작성  -->
+<insert id = "insertReply" parameterType = "board_ReplyVo">
+	insert into board_reply values(BOARD_RE_NO.nextval,#{board_no},BOARD_RE_NO.currval,#{user_id},#{board_re_content},sysdate,#{board_re_del},1)
+</insert>
+ 
+<!-- 댓글 수정 -->
+<update id="updateReply" parameterType="board_ReplyVo" >
+	update Board_Reply
+	set board_re_content = #{board_re_content},
+	    board_re_date = sysdate	
+</update>
+ 
+<!--  댓글 삭제 -->
+ <update id="deleteReply" parameterType="int">
+ 	update board_reply
+ 	  set board_re_del ='Y'
+ 	  where board_re_no = #{board_re_no}
+ </update>
+ 
+ 
+<!--  자유게시판 이미지파일 -->
+  <insert id ="insertImage" parameterType="board_ImgVo">
+  	INSERT INTO BOARD_IMG
+	VALUES(image_no.nextval, #{board_no},#{image_file_path});  
+  </insert>
+ 
+<!--  자유게시판 신고 -->
+ <insert id= "boardReport" parameterType = "board_ReportVo">
+ 	insert into board_report(board_report_id, user_id, board_no ,board_report_date)
+        values(
+        report_se.nextval,
+        (select user_id from member where user_id= #{user_id}),
+        (select board_no from board where board_no =#{board_no}),
+        sysdate
+        )
+ </insert>
+
+
+
+
+</mapper>
