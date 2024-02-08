@@ -14,7 +14,7 @@ public class MemberVO {
 	private String mem_addr;
 	private String mem_photo;
 	
-	// TESTtest
+	// TESTtestfgfgfgfgfgfgfgfgf
 	
 	
 	// VO클래스에서 별도의 생성자를 만들 때에는 기본 생성자도 반드시 같이 만들어 준다.
@@ -82,11 +82,7 @@ public class MemberVO {
 		this.mem_photo = mem_photo;
 	}
 	
-	@Override
-	public String toString() {
-		return "MemberVO [mem_id=" + mem_id + ", mem_pass=" + mem_pass + ", mem_name=" + mem_name + ", mem_tel="
-				+ mem_tel + ", mem_addr=" + mem_addr + "]";
-	}
+	
 	
 	
 }
