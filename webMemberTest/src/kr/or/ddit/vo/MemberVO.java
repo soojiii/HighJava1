@@ -14,6 +14,9 @@ public class MemberVO {
 	private String mem_addr;
 	private String mem_photo;
 	
+	// TEST
+	
+	
 	// VO클래스에서 별도의 생성자를 만들 때에는 기본 생성자도 반드시 같이 만들어 준다.
 	
 	public MemberVO() { }
