@@ -46,7 +46,8 @@ $(function(){
 <table border="1">
 <tbody>
 	<tr>
-		<td colspan="2" style="text-align:center;"><img src="<%=request.getContextPath() %>/images/imageView.do?memID=<%=memVo.getMem_id() %>" width="200" height="140"></td>
+		<td colspan="2" style="text-align:center;"><img src="<%=request.getContextPath() %>
+		/images/imageView.do?memID=<%=memVo.getMem_id() %>" width="200" height="140"></td>
 	</tr>
 	<tr>
 		<td>회원ID</td><td><%=memVo.getMem_id()%></td>
@@ -69,6 +70,6 @@ $(function(){
 			<input id="btnDelete" type="button" value="삭제"> 
 			<input type="button" id="btnList" value="회원목록"></td>
 	</tr>
-</tbody>
+</tbody> 
 </table>
 </form></body></html>

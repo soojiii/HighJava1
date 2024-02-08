@@ -1,0 +1,66 @@
+package vo.goods;
+
+public class PayVO {
+	 private int pay_no;
+	 private int way_no;
+	 private int order_no;
+	 private int way_price;
+	 private String pay_date;
+	 
+	 
+	public PayVO() {
+	
+	}
+
+	
+	public int getPay_no() {
+		return pay_no;
+	}
+
+	public void setPay_no(int pay_no) {
+		this.pay_no = pay_no;
+	}
+
+	public int getWay_no() {
+		return way_no;
+	}
+
+	public void setWay_no(int way_no) {
+		this.way_no = way_no;
+	}
+
+	public int getOrder_no() {
+		return order_no;
+	}
+
+	public void setOrder_no(int order_no) {
+		this.order_no = order_no;
+	}
+
+	public int getWay_price() {
+		return way_price;
+	}
+
+	public void setWay_price(int way_price) {
+		this.way_price = way_price;
+	}
+
+	public String getPay_date() {
+		return pay_date;
+	}
+
+	public void setPay_date(String pay_date) {
+		this.pay_date = pay_date;
+	}
+
+
+	@Override
+	public String toString() {
+		return "PayVO [pay_no=" + pay_no + ", way_no=" + way_no + ", order_no=" + order_no + ", way_price=" + way_price
+				+ ", pay_date=" + pay_date + "]";
+	}
+	
+	
+	 
+	 
+}

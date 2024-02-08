@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 이 문서는 MyBatis에서 처리할 SQL문을 작성하는 문서입니다. -->
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+		   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 
+	mapper태그의 namespace속성값은 이 곳에 작성된 SQL문을 호출해서 사용할 때
+	사용되는 이름이다. 
+ -->
+<mapper namespace="goods">
+
+	<!-- 굿즈전체목록 -->
+	<select id="getAllGoods" resultType="GoodsVo">
+		select * from goods
+	</select>    
+	
+	<!-- 굿즈품목상세 -->
+	<select id="getGoods" parameterType="String" resultType="GoodsVo">
+		select * from goods where goods_no = #{goods_no}
+	</select> 
+	
+	<!-- 굿즈이미지 -->
+	<select id="getGoodsImg" parameterType="String" resultType="GoodsImgVo">
+		 select goods_img_path from goods_img
+		 where goods_no = #{goods_no};
+	</select>
+	
+	
+	<!-- 굿즈이름검색 -->
+	<select id="searchGoods" parameterType="String" resultType="GoodsVo">
+		select * from goods where goods_name = #{goods_name}
+	</select> 
+	
+	<!-- 리뷰전체 -->
+	<select id="goodsComment" resultType="GoodsCommentVo">
+		select * from goods_comment
+	</select> 
+	
+			
+	
+</mapper> 
+
+
+

@@ -1,0 +1,50 @@
+package vo.goods;
+
+public class GoodsVo {
+	 private int goods_no;
+	 private String goods_name;
+	 private int goods_price;
+	 private String goods_del;
+	 private String goods_qty;
+	
+	
+	public int getGoods_no() {
+		return goods_no;
+	}
+	public void setGoods_no(int goods_no) {
+		this.goods_no = goods_no;
+	}
+	public String getGoods_name() {
+		return goods_name;
+	}
+	public void setGoods_name(String goods_name) {
+		this.goods_name = goods_name;
+	}
+	public int getGoods_price() {
+		return goods_price;
+	}
+	public void setGoods_price(int goods_price) {
+		this.goods_price = goods_price;
+	}
+	public String getGoods_del() {
+		return goods_del;
+	}
+	public void setGoods_del(String goods_del) {
+		this.goods_del = goods_del;
+	}
+	public String getGoods_qty() {
+		return goods_qty;
+	}
+	public void setGoods_qty(String goods_qty) {
+		this.goods_qty = goods_qty;
+	}
+	
+	@Override
+	public String toString() {
+		return "GoodsVO [goods_no=" + goods_no + ", goods_name=" + goods_name + ", goods_price=" + goods_price
+				 + ", goods_del=" + goods_del + ", goods_qty=" + goods_qty + "]";
+	}
+	 
+	 
+		
+}
