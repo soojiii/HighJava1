@@ -52,7 +52,17 @@ package kr.or.ddit.basic.enumTest;
 
 
 public class EnumTest {
-	public enum Color{RED, GREEN, BLUE}
+	public enum Color{
+		RED, GREEN, BLUE("파랑색");
+		private Color(){}
+		private Color(String text){
+			this.text = text;
+		}
+		private String text;
+		public String getText() {
+			return text;
+		}
+	}
 	public enum Count{ONE, TWO, THREE}
 	
 	public enum Season{
